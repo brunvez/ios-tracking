@@ -27,5 +27,7 @@ class TodoListItemViewViewModel: ObservableObject {
             .collection("todos")
             .document(newItem.id)
             .setData(newItem.asDictionary())
+        
+        Analytics.track(eventName: "Toggle Todo Status", properties: ["new_status": newItem.isDone])
     }
 }

@@ -30,6 +30,9 @@ class RegisterViewViewModel : ObservableObject {
             }
             
             self?.insertUserRecord(id: userId)
+            
+            Analytics.track(event: AnalyticEvents.signUp(email: self!.email, name: self!.name))
+            Analytics.identify(userId: userId)
         }
     }
     
