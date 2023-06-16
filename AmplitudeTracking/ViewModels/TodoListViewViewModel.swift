@@ -25,5 +25,7 @@ class TodoListViewViewModel: ObservableObject {
             .collection("todos")
             .document(item.id)
             .delete()
+        
+        Analytics.track(event: AnalyticEvents.todoDeleted())
     }
 }

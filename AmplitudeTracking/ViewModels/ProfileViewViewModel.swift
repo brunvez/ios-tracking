@@ -39,6 +39,7 @@ class ProfileViewViewModel: ObservableObject {
     func logOut() {
         do {
             try Auth.auth().signOut()
+            Analytics.resetTracking()
         } catch {
             print(error)
         }

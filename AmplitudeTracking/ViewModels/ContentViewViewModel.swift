@@ -15,7 +15,10 @@ class ContentViewViewModel: ObservableObject {
         self.currentUserId = Auth.auth().currentUser?.uid ?? ""
         
         Auth.auth().addStateDidChangeListener { [weak self] _, user in
-            self?.currentUserId = user?.uid ?? ""
+            if let userId = user?.uid {
+                self?.currentUserId = userId
+                Analytics.identify(userId: userId)
+            }
         }
     }
     
